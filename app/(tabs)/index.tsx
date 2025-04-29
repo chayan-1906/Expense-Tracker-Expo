@@ -1,10 +1,11 @@
-import {Text, View} from "react-native";
+import {Text} from "react-native";
 import Button from "@/components/Button";
 import Typo from "@/components/Typo";
 import {Colors} from "@/constants/theme";
 import {signOut} from "@firebase/auth";
 import {auth} from "@/config/firebase";
 import {useAuth} from "@/contexts/authContext";
+import ScreenWrapper from "@/components/ScreenWrapper";
 
 const Home = () => {
     const {user} = useAuth();
@@ -15,12 +16,12 @@ const Home = () => {
     }
 
     return (
-        <View>
+        <ScreenWrapper>
             <Text>Home</Text>
             <Button onPress={handleLogout}>
                 <Typo color={Colors.black}>Logout</Typo>
             </Button>
-        </View>
+        </ScreenWrapper>
     );
 }
 

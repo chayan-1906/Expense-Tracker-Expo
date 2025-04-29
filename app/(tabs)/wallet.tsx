@@ -1,10 +1,11 @@
-import {Text, View} from "react-native";
+import Typo from "@/components/Typo";
+import ScreenWrapper from "@/components/ScreenWrapper";
 
 const Wallet = () => {
     return (
-        <View>
-            <Text>Wallet</Text>
-        </View>
+        <ScreenWrapper>
+            <Typo>Wallet</Typo>
+        </ScreenWrapper>
     );
 }
 
