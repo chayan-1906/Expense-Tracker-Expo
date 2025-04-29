@@ -10,7 +10,7 @@ const ScreenWrapper = ({style, children}: ScreenWrapperProps) => {
 
     return (
         <View style={[{paddingTop, flex: 1, backgroundColor: Colors.neutral900}, style]}>
-            <StatusBar style={'light'}/>
+            <StatusBar style={'inverted'}/>
             {children}
         </View>
     );

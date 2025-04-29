@@ -7,9 +7,9 @@ import Loading from "@/components/Loading";
 const Button = ({style, onPress, loading = false, children}: CustomButtonProps) => {
     if (loading) {
         return (
-            <View style={[styles.button, style, {backgroundColor: 'transparent'}]}>
+            <View style={[styles.button, style, {backgroundColor: Colors.primaryDark}]}>
                 {/** loading */}
-                <Loading/>
+                <Loading color={Colors.neutral900}/>
             </View>
         );
     }

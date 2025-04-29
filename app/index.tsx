@@ -1,6 +1,6 @@
 import {Image, StyleSheet, View} from "react-native";
 import {Colors} from "@/constants/theme";
-import {Href, useRouter} from "expo-router";
+import {useRouter} from "expo-router";
 import {useEffect} from "react";
 import routes from "@/utils/routes";
 
@@ -9,7 +9,7 @@ const SplashScreen = () => {
 
     useEffect(() => {
         setTimeout(()=> {
-            router.push(routes.welcomePath as Href);
+            router.push(routes.welcomePath);
         }, 2000);
     }, []);
 
