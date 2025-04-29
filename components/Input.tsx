@@ -7,7 +7,14 @@ const Input = (props: InputProps) => {
     return (
         <View style={[styles.container, props.containerStyle && props.containerStyle]}>
             {props.icon && props.icon}
-            <TextInput ref={props.inputRef} placeholderTextColor={Colors.neutral400} style={[styles.input, props.inputStyle]} {...props}/>
+            <TextInput
+                // ref={props.inputRef}
+                ref={(input) => {
+                    if (props.inputRef) {
+                        props.inputRef.current.input = input;
+                    }
+                }}
+                placeholderTextColor={Colors.neutral400} style={[styles.input, props.inputStyle]} {...props}/>
         </View>
     );
 }

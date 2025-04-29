@@ -7,11 +7,11 @@ import routes from "@/utils/routes";
 const SplashScreen = () => {
     const router = useRouter();
 
-    useEffect(() => {
+    /*useEffect(() => {
         setTimeout(()=> {
             router.push(routes.welcomePath);
         }, 2000);
-    }, []);
+    }, []);*/
 
     return (
         <View style={styles.container}>

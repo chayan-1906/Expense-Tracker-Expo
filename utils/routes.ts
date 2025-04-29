@@ -5,6 +5,7 @@ const routes = {
     // welcomePath: '/(auth)/welcome',
     loginPath: () => '/login' as Href,
     registerPath: () => '/register' as Href,
+    tabsPath: () => '/(tabs)' as Href,
 };
 
 export default routes;

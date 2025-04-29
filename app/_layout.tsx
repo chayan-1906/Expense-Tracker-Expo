@@ -1,7 +1,8 @@
 import {StyleSheet} from "react-native";
 import {Stack} from "expo-router";
+import {AuthProvider} from "@/contexts/authContext";
 
-const Layout = () => {
+const StackLayout = () => {
     return (
         <Stack screenOptions={{headerShown: false}}>
 
@@ -9,6 +10,14 @@ const Layout = () => {
     );
 }
 
-export default Layout;
+function RootLayout() {
+    return (
+        <AuthProvider>
+            <StackLayout/>
+        </AuthProvider>
+    );
+}
+
+export default RootLayout;
 
 const styles = StyleSheet.create({});

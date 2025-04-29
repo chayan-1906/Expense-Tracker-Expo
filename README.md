@@ -9,3 +9,6 @@
 
 ### Phosphor - https://www.npmjs.com/package/phosphor-react-native
     npm i phosphor-react-native
+
+### React Native Async Storage - https://www.npmjs.com/package/@react-native-async-storage/async-storage
+    npm i @react-native-async-storage/async-storage

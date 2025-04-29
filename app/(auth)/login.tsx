@@ -1,6 +1,6 @@
 import ScreenWrapper from "@/components/ScreenWrapper";
 import Typo from "@/components/Typo";
-import {Alert, Pressable, StyleSheet, View} from "react-native";
+import {Alert, Pressable, StyleSheet, TextInput, View} from "react-native";
 import {Colors, spacingX, spacingY} from "@/constants/theme";
 import {verticalScale} from "@/utils/styling";
 import BackButton from "@/components/BackButton";
@@ -10,21 +10,32 @@ import {useRef, useState} from "react";
 import Button from "@/components/Button";
 import {useRouter} from "expo-router";
 import routes from "@/utils/routes";
+import {useAuth} from "@/contexts/authContext";
 
 const Login = () => {
-    const emailRef = useRef('');
-    const passwordRef = useRef('');
+    const emailRef = useRef<{ input: TextInput | null; value: string }>({input: null, value: ''});
+    const passwordRef = useRef<{ input: TextInput | null; value: string }>({input: null, value: ''});
+
     const [isLoading, setIsLoading] = useState(false);
     const router = useRouter();
+    const {login: loginUser} = useAuth();
 
-    const handleSubmit = () => {
-        if (!emailRef.current || !passwordRef.current) {
+    const handleSubmit = async () => {
+        if (!emailRef.current.value || !passwordRef.current.value) {
             Alert.alert('Login', 'Please fill all the fields!');
             return;
         }
-        console.log('email:', emailRef.current);
-        console.log('password:', passwordRef.current);
+
+        console.log('email:', emailRef.current.value);
+        console.log('password:', passwordRef.current.value);
         console.log('good to go!✅');
+        setIsLoading(true);
+        const loginUserResponse = await loginUser(emailRef.current.value, passwordRef.current.value);
+        console.log('loginUserResponse:', loginUserResponse);
+        if (!loginUserResponse.success) {
+            Alert.alert('Login', loginUserResponse.message);
+        }
+        setIsLoading(false);
     }
 
     return (
@@ -42,11 +53,16 @@ const Login = () => {
                     <Typo size={16} color={Colors.textLighter}>Login now to track all your expenses</Typo>
 
                     {/** email input */}
-                    <Input placeholder={'Enter your email...'} icon={<At size={verticalScale(26)} color={Colors.neutral300} weight={'fill'}/>} onChangeText={(value) => emailRef.current = value}/>
+                    <Input inputRef={emailRef} placeholder={'Enter your email...'} autoFocus icon={<At size={verticalScale(26)} color={Colors.neutral300} weight={'fill'}/>}
+                           onChangeText={(value) => (emailRef.current.value = value)}
+                           keyboardType={'email-address'} returnKeyType={'next'} onSubmitEditing={() => passwordRef?.current?.input?.focus()}
+                    />
 
                     {/** password input */}
-                    <Input placeholder={'Enter your password...'} icon={<Lock size={verticalScale(26)} color={Colors.neutral300} weight={'fill'}/>} secureTextEntry
-                           onChangeText={(value) => passwordRef.current = value}/>
+                    <Input inputRef={passwordRef} placeholder={'Enter your password...'} icon={<Lock size={verticalScale(26)} color={Colors.neutral300} weight={'fill'}/>} secureTextEntry
+                           onChangeText={(value) => (passwordRef.current.value = value)}
+                           keyboardType={'default'} returnKeyType={'done'} onSubmitEditing={handleSubmit}
+                    />
 
                     <Typo size={14} color={Colors.text} style={{alignSelf: 'flex-end'}}>Forgot Password?</Typo>
 

@@ -98,7 +98,8 @@ export interface InputProps extends TextInputProps {
     icon?: React.ReactNode;
     containerStyle?: ViewStyle;
     inputStyle?: TextStyle;
-    inputRef?: React.RefObject<TextInput>;
+    // inputRef?: React.RefObject<TextInput>;
+    inputRef?: React.MutableRefObject<{ input: TextInput | null; value: string }>;
     //   label?: string;
     //   error?: string;
 }
@@ -134,22 +135,15 @@ export type UserDataType = {
 export type AuthContextType = {
     user: UserType;
     setUser: Function;
-    login: (
-        email: string,
-        password: string
-    ) => Promise<{ success: boolean; msg?: string }>;
-    register: (
-        email: string,
-        password: string,
-        name: string
-    ) => Promise<{ success: boolean; msg?: string }>;
-    updateUserData: (userId: string) => Promise<void>;
+    login: (email: string, password: string) => Promise<{ success: boolean; message?: string }>;
+    register: (email: string, password: string, name: string) => Promise<{ success: boolean; message?: string }>;
+    updateUser: (userId: string) => Promise<void>;
 }
 
 export type ResponseType = {
     success: boolean;
     data?: any;
-    msg?: string;
+    message?: string;
 }
 
 export type WalletType = {
