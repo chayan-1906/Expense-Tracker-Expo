@@ -1,8 +1,8 @@
-import React, {createContext, useContext, useEffect, useState} from "react";
+import {createContext, useContext, useEffect, useState} from 'react';
 import {AuthContextType, UserType} from "@/types";
-import {auth, firestore} from "@/config/firebase";
-import {createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword} from "@firebase/auth";
-import {doc, getDoc, setDoc} from "@firebase/firestore";
+import {createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword} from 'firebase/auth';
+import {doc, getDoc, setDoc} from 'firebase/firestore';
+import {auth, firestore} from '@/config/firebase';
 import {useRouter} from "expo-router";
 import routes from "@/utils/routes";
 

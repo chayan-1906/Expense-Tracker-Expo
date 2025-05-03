@@ -1,14 +1,9 @@
-// Import the functions you need from the SDKs you need
-import {initializeApp} from "firebase/app";
-import {getAnalytics} from "firebase/analytics";
-import {getReactNativePersistence, initializeAuth} from "@firebase/auth";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import {getFirestore} from "@firebase/firestore";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import {initializeApp} from 'firebase/app';
+import {getReactNativePersistence, initializeAuth} from 'firebase/auth';
+import {getAnalytics} from 'firebase/analytics';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {getFirestore} from 'firebase/firestore';
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
     apiKey: "AIzaSyAJZ41SlhNGRxjkCGcqnMXi21p3nVipLMU",
     authDomain: "expense-tracker-chayan19062000.firebaseapp.com",
